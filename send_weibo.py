@@ -7,10 +7,10 @@ from email.mime.text import MIMEText
 import sys
 
 mailto_list=["stef.woo@gmail.com",]
-mail_host="smtp.163.com"
-mail_user="stef.woo"
-mail_pass="kittenwuwei"
-mail_postfix="163.com"
+mail_host="smtp.126.com"
+mail_user="weibochercker"
+mail_pass="newweibocoming!"
+mail_postfix="126.com"
 def send_mail(to_list,sub,content):
     '''
     to_list:发给谁
@@ -47,7 +47,7 @@ def run():
 	UID = [1698194380, 1038819010] #ffice weibo stefwoo=1038819010
 	since_id = 0 # message which is catch  must late than since_id 
 	message_id = 0
-	COUNT = 10 #count is the max of message
+	#COUNT = 10 #count is the max of message
 	loop = 1
 	while True:
 		r = []
@@ -65,7 +65,7 @@ def run():
 						break            
 		except:
 			print "Unexpected error:", sys.exc_info()
-		print "Loop  : %s, Time : %s , since_id : %s " % (loop, time.ctime(), since_id)
+		print "Loop  : %s, Time : %s , since_id : %s " % (loop, time.ctidme(), since_id)
 		loop = loop + 1
 		time.sleep(60)
 
