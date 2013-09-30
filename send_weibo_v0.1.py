@@ -23,16 +23,16 @@ def send_mail(to_list,sub,content):
     msg['Subject'] = sub
     msg['From'] = me
     msg['To'] = ";".join(to_list)
-    try:
-        s = smtplib.SMTP()
-        s.connect(mail_host)
-        s.login(mail_user,mail_pass)
-        s.sendmail(me, to_list, msg.as_string())
-        s.close()
-        return True
-    except Exception, e:
-        print str(e), time.ctime()
-        return False
+    # try:
+    s = smtplib.SMTP()
+    s.connect(mail_host)
+    s.login(mail_user,mail_pass)
+    s.sendmail(me, to_list, msg.as_string())
+    s.close()
+    return True
+    # except Exception, e:
+    #     print str(e), time.ctime()
+    #     return False
 
 APP_KEY = '1021805059' # app key
 APP_SECRET = 'fc6af22b6147925b79c08ad5adfee78c' # app secret
@@ -46,26 +46,26 @@ def run():
 
 	UID = [1698194380, 1038819010] #ffice weibo stefwoo=1038819010
 	since_id = 0 # message which is catch  must late than since_id 
-	message_id = 0
+	# message_id = 0
 	#COUNT = 10 #count is the max of message
 	loop = 1
 	while True:
 		r = []
-		try:
-			r = client.statuses.friends_timeline.get(trim_user = 1, since_id = since_id)
-            #, count = COUNT)
-			if r.statuses:
-				since_id = r.statuses[0].id
-				for message in r.statuses:
-					if (message.uid in UID):# and (message.id > message_id):
-						try:
-							send_mail(mailto_list,"weibo has a new blog",message.text.encode('gb2312'))
-							print "A new message found!"
-						except:
-							print "send mail failed : ", sys.exc_info()
-						break            
-		except:
-			print "Unexpected error:", sys.exc_info()
+		# try:
+		r = client.statuses.friends_timeline.get(trim_user = 1, since_id = since_id)
+        #, count = COUNT)
+		if r.statuses:
+			since_id = r.statuses[0].id
+			for message in r.statuses:
+				if message.uid in UID:# and (message.id > message_id):
+					# try:
+					send_mail(mailto_list,"weibo has a new blog",message.text.encode('gb2312'))
+					print "A new message found!"
+					# except:
+						# print "send mail failed : ", sys.exc_info()
+					break            
+		# except:
+		# 	print "Unexpected error:", sys.exc_info()
 		print "Loop  : %d, Time : %s , since_id : %d " % (loop, str(time.ctime()), since_id)
 		loop = loop + 1
 		time.sleep(60)
