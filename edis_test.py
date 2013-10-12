@@ -47,4 +47,6 @@
 # print type(i)
 # print isinstance(i, unicode)
 
-print "true" if True else 1
+# print "true" if True else 1
+# if True:print "true" 
+# print "ok"
